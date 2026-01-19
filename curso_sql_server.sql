@@ -177,3 +177,21 @@ ORDER BY NomeLivro
 SELECT TOP (15) PERCENT NomeLivro
 FROM Livro
 ORDER BY NomeLivro
+
+
+-- WITH TIES
+SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
+FROM Livro
+ORDER BY IdAssunto DESC;
+
+--CLÁUSULA WHERE: SUBCONSULTAS
+SELECT NomeLivro, DataPub
+FROM Livro
+WHERE IdEditora = (
+		SELECT IdEditora
+		FROM Editora
+		WHERE NomeEditora = 'Aleph'
+)
+ORDER BY NomeLivro
+
+
