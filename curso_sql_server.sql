@@ -156,6 +156,24 @@ ORDER BY IdEditora ASC, PrecoLivro DESC
 
 
 -- RESTRIÇÃO DE RESULTADOS: SELECT TOP
-/*
-
+/* Sintaxe
+SELECT TOP (número|PERCENT) colunas
+FROM tabela
+ORDER BY
 */
+
+-- Exemplos
+SELECT TOP (2) NomeLivro
+FROM Livro
+ORDER BY NomeLivro
+
+
+-- Exemplos
+SELECT TOP (2) NomeLivro
+FROM Livro
+ORDER BY NomeLivro
+
+
+SELECT TOP (15) PERCENT NomeLivro
+FROM Livro
+ORDER BY NomeLivro
