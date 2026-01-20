@@ -184,7 +184,7 @@ SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
 FROM Livro
 ORDER BY IdAssunto DESC;
 
---CLÁUSULA WHERE: SUBCONSULTAS
+-- CLÁUSULA WHERE: SUBCONSULTAS
 SELECT NomeLivro, DataPub
 FROM Livro
 WHERE IdEditora = (
@@ -194,4 +194,46 @@ WHERE IdEditora = (
 )
 ORDER BY NomeLivro
 
+-- VERIFICAR O VALOR ATUAL DE IDENTY
+SELECT IDENT_CURRENT('Teste');
 
+-- AUMENTAR 10% NO VALOR DO LIVRO
+UPDATE Livro
+SET PrecoLivro = PrecoLivro * 1.1
+WHERE IdLivro = 105;
+
+-- DIMINUIR 20% NO VALOR DO LIVRO
+UPDATE Livro
+SET PrecoLivro = PrecoLivro * 0.8
+WHERE IdLivro = 105
+
+
+/*
+COMBINAR CONSULTAS COM O OPERADOR UNION
+
+SINTAXE:
+
+SELECT colunas
+FROM tabela1
+UNION
+SELECT colunas FROM tabela2... 
+*/
+
+-- EXEMPLO 01
+SELECT NomeAutor Nome, 'Autor' AS Tipo FROM Autor
+UNION
+SELECT NomeEditora Nome, 'Editora' AS Tipo FROM Editora;
+
+-- EXEMPLO 02
+SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto;
+
+-- EXEMPLO 03
+SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor
+UNION
+SELECT NomeEditora AS Nome, 'Editora' AS Tipo FROM Editora
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto
+UNION
+SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
