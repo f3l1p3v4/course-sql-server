@@ -237,3 +237,46 @@ UNION
 SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto
 UNION
 SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
+
+
+-- FUNÇÕES DE AGREGAÇÃO
+/*
+MIN, MAX, AVG, SUM, COUNT
+*/
+
+SELECT COUNT(*) 'Total Linhas'
+FROM Autor;
+
+SELECT MAX(PrecoLivro) 'Mais Caro'
+FROM Livro;
+
+SELECT MIN(NumeroPaginas) 'Menor nº Páginas'
+FROM Livro;
+
+SELECT AVG(PrecoLivro) 'Preço Médio'
+FROM Livro;
+
+SELECT SUM(PrecoLivro) 'Valor Total'
+FROM Livro;
+
+SELECT AVG(PrecoLivro) 'Preço Médio'
+FROM Livro;
+
+SELECT COUNT(*) 'Total Linhas do assunto = 1'
+FROM Livro
+WHERE IdAssunto = 1;
+
+SELECT AVG(PrecoLivro) 'Preço Médio'
+FROM Livro;
+
+-- MESMO RESULTADO DE USAR A FUNÇÃO AVG
+SELECT SUM(PrecoLivro) / COUNT(*) AS 'Preço Médio'
+FROM Livro;
+
+SELECT NomeLivro, PrecoLivro
+FROM Livro
+WHERE PrecoLivro = (
+		SELECT MAX(PrecoLivro)
+		FROM Livro
+	 );
+
