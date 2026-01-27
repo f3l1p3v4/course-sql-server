@@ -383,6 +383,34 @@ FROM DISK = 'C:\SQL\db_Biblioteca.bak';
 GO
 
 
+-- INNER JOIN
+/*
+SINTAXE:
+SELECT colunas
+FROM tabela1
+[INNER] JOIN tabela2
+	ON tabela1.coluna = tabela2.coluna
+[INNER] JOIN tabelaN
+	ON tabela1.coluna = tabelaN.coluna
+*/
+
+SELECT L.NomeLivro Livros, E.NomeEditora Editoras
+FROM Livro L
+INNER JOIN Editora E
+ON L.IdEditora = E.IdEditora
+WHERE E.NomeEditora LIKE '[MH]%'
+ORDER BY L.NomeLivro;
+
+
+SELECT L.NomeLivro Livro, A.NomeAutor Autor, A.SobrenomeAutor Sobrenome, E.NomeEditora Editoras
+FROM LivroAutor LA
+INNER JOIN Autor A
+ON LA.IdAutor = A.IdAutor
+INNER JOIN Livro L
+ON L.IdLivro = L.IdLivro
+JOIN Editora E
+ON L.IdEditora = E.IdEditora
+ORDER BY Livro;
 
 
 
