@@ -364,23 +364,23 @@ GO
 */
 
 --REALIZA O BACKUP COMPLETO DO BANCO DE DADOS PARA UM ARQUIVO FISICO
-BACKUP DATABASE db_Biblioteca
-TO DISK = 'C:\SQL\db_Biblioteca.bak';
-GO
+--BACKUP DATABASE db_Biblioteca
+--TO DISK = 'C:\SQL\db_Biblioteca.bak';
+--GO
 
 --MUDA O CONTEXTO PARA O BANCO MASTER E ACESSA O MODO EXCLUSIVO PARA EXCLUIR O BANCO
-USE master;
-GO
-ALTER DATABASE db_Biblioteca
-SET single_user WITH ROLLBACK immediate;
-GO
-DROP DATABASE db_Biblioteca;
-GO
+--USE master;
+--GO
+--ALTER DATABASE db_Biblioteca
+--SET single_user WITH ROLLBACK immediate;
+--GO
+--DROP DATABASE db_Biblioteca;
+--GO
 
 --RESTAURA O BANCO DE DADOS A PARTIR DO ARQUIVO DE BACKUP CRIADO
-RESTORE DATABASE db_Biblioteca
-FROM DISK = 'C:\SQL\db_Biblioteca.bak';
-GO
+--RESTORE DATABASE db_Biblioteca
+--FROM DISK = 'C:\SQL\db_Biblioteca.bak';
+--GO
 
 
 -- INNER JOIN
@@ -411,6 +411,47 @@ ON L.IdLivro = L.IdLivro
 JOIN Editora E
 ON L.IdEditora = E.IdEditora
 ORDER BY Livro;
+
+--	OUTER JOINS
+
+/*
+SINTAXE: LEFT JOIN
+
+SELECT colunas
+FROM tabela_esq
+LEFT JOIN tabela_dir
+ON tabela_esq.coluna = tabela_dir.coluna
+*/
+
+
+/*
+SINTAXE: RIGHT JOIN
+
+SELECT colunas
+FROM tabela_esq
+RIGHT JOIN tabela_dir
+ON tabela_esq.coluna = tabela_dir.coluna
+*/
+
+
+/*
+SINTAXE: FULL JOIN
+
+SELECT colunas
+FROM tabela1
+FULL JOIN tabela2
+ON tabela1.coluna = tabela2.coluna
+*/
+
+/*
+SINTAXE: CROSS JOIN
+
+SELECT colunas
+FROM tabela1
+CROSS JOIN tabela2
+*/
+
+
 
 
 
