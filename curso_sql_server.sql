@@ -451,6 +451,48 @@ FROM tabela1
 CROSS JOIN tabela2
 */
 
+-- VIEWS - TABELAS VIRTUAIS
+-- SIMPLIFICAR CONSULTAS COMPLEXAS
+-- SEGURANÇA
+-- ABSTRAÇÃO
+-- AGREGAÇÃO E SUMARIZAÇÃO DE DADOS
+
+
+-- SINTAXE:
+/*
+CREATE [OR ALTER] VIEW nomeView AS
+SELECT colunas
+FROM tabelas
+WHERE condições
+*/
+
+
+CREATE OR ALTER VIEW vwLivroPreco AS
+	SELECT NomeLivro, PrecoLivro
+	FROM Livro
+	ORDER BY  PrecoLivro;
+
+SELECT * FROM vwLivroPreco;
+
+-- PARA VISUALIZAR O CODIGO DA VIEW
+EXEC sp_helptext vwLivroPreco;
+
+
+IF OBJECT_ID('vwLivroAssunto', 'view') IS NOT NULL
+	DROP VIEW vwLivroAssunto
+GO
+CREATE VIEW vwLivroAssunto AS
+	SELECT L.NomeLivro Livro, A.NomeAssunto Assunto
+	FROM Livro L
+	INNER JOIN Assunto A
+	ON L.IdAssunto = A.IdAssunto
+	ORDER BY  PrecoLivro;
+GO
+
+
+
+
+
 
 
 
