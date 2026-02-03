@@ -489,8 +489,48 @@ CREATE VIEW vwLivroAssunto AS
 	ORDER BY  PrecoLivro;
 GO
 
+-- SUBCONSULTAS
+
+/*
+SINTAXE:
+SELECT colunas
+FROM tabelas
+WHERE coluna operador (
+	SELECT colunas
+	FROM tabelas
+	WHERE filtro
+)
+[ORDER BY coluna]
+*/
+
+/* Busca o nome e o preço de todos os livros cujo valor 
+   seja maior que a média de preços de todos os livros da tabela.
+   A subconsulta cria uma "tabela temporária" com o valor médio global.
+*/
+SELECT L.NomeLivro, L.PrecoLivro
+FROM Livro L,
+	(SELECT AVG(PrecoLivro) AS MediaPreco FROM Livro) AS Subconsulta
+WHERE L.PrecoLivro > Subconsulta.MediaPreco;
 
 
+/* Retorna o nome da editora que publicou livros de 'Ficção Científica'.
+   O fluxo de busca é: 
+   1. Descobre o ID do assunto 'Ficção Científica'.
+   2. Localiza o ID da editora vinculada a esse assunto na tabela de Livros.
+   3. Retorna o nome da editora correspondente, em ordem alfabética.
+*/
+SELECT NomeEditora
+FROM Editora
+WHERE idEditora = (
+	SELECT IdEditora
+	FROM Livro
+	WHERE IdAssunto = (
+		SELECT IdAssunto
+		FROM Assunto
+		WHERE NomeAssunto = 'Ficção Científica'
+		)
+)
+ORDER BY NomeEditora
 
 
 
