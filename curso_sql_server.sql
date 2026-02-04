@@ -533,6 +533,52 @@ WHERE idEditora = (
 ORDER BY NomeEditora
 
 
+-- PROCEDURE
+
+/*
+SINTAXE:
+
+CREATE PROCEDURE nome_procedimento
+(
+	@Parâmetro Tipo_dados, ...
+)
+AS
+[BEGIN]
+	Bloco de códigos
+[END]
+GO
+
+Para executar uma procedura use a palavra EXECUTE ou EXEC 
+EXEC sp_teste @NomeAutor='Felipe'
+
+Para visualizar o codigo de uma procedure
+EXEC sp_helptext sp_nome_procedimento
+
+Renomear procedure (Porém não é recomendado, pois outros procedimentos podem usar a antiga procedure com o nome antigo
+o ideial e excluir e criar novamente)
+
+sp_rename 'nome_atual', 'novo_nome'
+*/
+
+--Criar uma procedure com conteudo encriptado, adicionar o WITH ENCRYPTION
+
+CREATE PROCEDURE nome_procedimento
+WITH ENCRYPTION
+(
+	@Parâmetro Tipo_dados, ...
+)
+AS
+[BEGIN]
+	Bloco de códigos
+[END]
+GO
+
+-- TRIGGERS (Gatilhos)
+
+
+
+
+
 
 
 
