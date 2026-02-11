@@ -576,6 +576,32 @@ GO
 -- TRIGGERS (Gatilhos)
 
 
+/*
+SINTAXE:
+
+CREATE [OR ALTER] TRIGGER nome_trigger
+ON tabela | view
+[WITH ENCRYPTION]
+	AFTER | INSTEAD OF [INSERT, UPDATE, DELETE]
+AS
+BEGIN
+	Código do Trigger
+END;
+GO
+*/
+
+
+-- Visualizar os TRIGGERS por tabela
+EXEC sp_helptrigger @tabname=Editora;
+
+
+-- Visualizar todos os TRIGGERS
+SELECT * FROM sys.triggers
+WHERE is_disabled = 0 OR is_disabled = 1;
+
+
+-- UDF - FUNÇÕES DEFINIDAS PELO USUÁRIO
+
 
 
 
