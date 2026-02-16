@@ -600,13 +600,47 @@ SELECT * FROM sys.triggers
 WHERE is_disabled = 0 OR is_disabled = 1;
 
 
--- UDF - FUNÇÕES DEFINIDAS PELO USUÁRIO
+/*
+UDF - FUNÇÕES DEFINIDAS PELO USUÁRIO
+
+Podemos criar funções (User-Defined Functions / UDFs) para
+realizar diversas tarefas nos bancos de dados, tais como:
+- Inserir lógica complexa em uma consulta
+- Criar novas funções para expressões complexas
+- Substituir views com a vantagem de aceitar parâmetros
+
+As funções UDF podem ser Escalares ou Tabulares (com valor de tabela):
+- Função UDF Escalar: Retorna um valor único
+- Função UDF Tabular: Retorna uma tabela de valores
 
 
 
+-- Funções Escalares
+CREATE FUNCTION nome_funcao(parâmetros)
+RETURNS tipo_dado_retorno
+AS
+BEGIN
+	bloco de código
+	RETURN valor_retorno
+END;
+*/
 
+--Função com valor de tabela
+CREATE FUNCTION retorna_itens(@valor REAL)
+RETURNS TABLE
+AS 
+RETURN (
+	SELECT L.NomeLivro, A.NomeAssunto, E.NomeEditora
+	FROM Livro L
+	INNER JOIN Assunto A
+	ON L.IdAssunto = A.IdAssunto
+	INNER JOIN Editora E
+	ON L.IdEditora = E.IdEditora
+	WHERE L.PrecoLivro > @valor
+);
 
-
+SELECT NomeLivro, NomeAssunto
+FROM dbo.retorna_itens(62.00)
 
 
 
