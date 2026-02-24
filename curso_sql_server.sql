@@ -642,10 +642,50 @@ RETURN (
 SELECT NomeLivro, NomeAssunto
 FROM dbo.retorna_itens(62.00)
 
+-- Funções de Data e Hora
 
+SELECT GETDATE() AS 'Data e hora atuais';
+SELECT GETUTCDATE() AS 'Data e hora atuais';
+SELECT CURRENT_TIMESTAMP;
 
+SELECT YEAR(GETDATE()) AS Ano;
+SELECT MONTH(GETDATE()) AS Mes;
+SELECT DAY(GETDATE()) AS Dia;
 
+-- DATEDIFF
+/*
+Sintaxe:
+DATEDIFF(parte, data_inicial, data_final)
 
+SELECT DATEDIFF(hh, getutcdate(), getdate()) AS 'UTC Campo Grande - MS';
+
+SELECT DATEDIFF(dd, '1980-12-15', gatdate());
+
+SELECT DATEPART(yyyy, DataPub) AS 'Ano de Lançamento'
+DATEPART(dd, DatePub) AS 'Dia'
+DATENAME(mm, DatePub) AS 'Mês'
+FROM Livro
+WHERE idLivro = 105;
+*/
+
+-- DATEADD(parte, número, data)
+/*
+Sintaxe:
+SELECT DataPub 'Publicação EUA', DATEADD(dd,50,DatePub) AS 'Lançamento Brasil'
+FROM Livro
+WHERE idLivro = 105;
+*/
+
+SELECT DATEADD(dd,20,GETDATE());
+
+-- CONVERT(tipo_dados, expressão, estilo)
+SELECT CONVERT(VARCHAR(10), GETDATE(), 103) Hoje;
+
+SELECT CONVERT(VARCHAR(10), GETDATE(), 108) Hoje;
+
+SELECT NomeLivro Título, CONVERT(VARCHAR(10), DataPub, 103) Publicação
+FROM Livro
+WHERE DataPub >= CONVERT(VARCHAR(10), '10/10/2015', 103);
 
 
 
