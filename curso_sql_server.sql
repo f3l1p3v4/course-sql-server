@@ -1,4 +1,4 @@
-RETURN;
+ÔªøRETURN;
 
 create table LivroAutor(
 IdLivro smallint not null,
@@ -8,10 +8,10 @@ constraint fk_id_autores foreign key(IdAutor) references Autor(IdAutor),
 constraint pk_livro_autor primary key(IdLivro, IdAutor)
 )
 
--- VERIFICA INFORMA«’ES DETALHADAS DE UMA TABELA
+-- VERIFICA INFORMA√á√ïES DETALHADAS DE UMA TABELA
 sp_help Livro
 
--- VERIFICA NOMES DAS TABELAS DE UM BANCO E NA ORDEM DE CRIA«√O	
+-- VERIFICA NOMES DAS TABELAS DE UM BANCO E NA ORDEM DE CRIA√á√ÉO	
 select name from Biblioteca.sys.tables;
 
 -- ADICIONAR UMA NOVA COLUNA A UMA TABELA EXISTENTE
@@ -42,20 +42,20 @@ DROP TABLE NomeTabela;
 
 INSERT INTO Assunto (NomeAssunto)
 VALUES
-('FicÁ„o Cientpifica'), ('Bot‚nica'),
-('EletrÙnica'), ('Matem·tica'),
+('Fic√ß√£o Cientpifica'), ('Bot√¢nica'),
+('Eletr√¥nica'), ('Matem√°tica'),
 ('Aventura'), ('Romance'),
-('FinanÁas'), ('Gastronomia'),
-('Terror'), ('AdministraÁ„o'),
-('Inform·tica'), ('Suspense');
+('Finan√ßas'), ('Gastronomia'),
+('Terror'), ('Administra√ß√£o'),
+('Inform√°tica'), ('Suspense');
 
-update Assunto set NomeAssunto = 'FicÁ„o CientÌfica' where idAssunto = 1
+update Assunto set NomeAssunto = 'Fic√ß√£o Cient√≠fica' where idAssunto = 1
 
 SELECT * FROM Assunto
 
 INSERT INTO Editora (NomeEditora)
 VALUES 
-('Pretice Hall'), ('O¥Reilly');
+('Pretice Hall'), ('O¬¥Reilly');
 
 SELECT * FROM Editora
 
@@ -68,7 +68,7 @@ SELECT * FROM Autor
 
 INSERT INTO Livro (NomeLivro, ISBN13, DataPub, PrecoLivro, NumeroPaginas, IdAssunto, IdEditora)
 VALUES
-('A Arte da EletrÙnica', '9788582604342', '20170308', 300.74, 1160, 1, 1)
+('A Arte da Eletr√¥nica', '9788582604342', '20170308', 300.74, 1160, 1, 1)
 
 SELECT * FROM Livro
 
@@ -123,8 +123,8 @@ SELECT * FROM LivroISBN;
 -- COMANDO PARA APAGAR TABELA
 DROP TABLE LivroISBN;
 
--- ORDENA«√O DE RESULTADOS COM CONSULTAS SQL:
--- CL¡USULA ORDER BY
+-- ORDENA√á√ÉO DE RESULTADOS COM CONSULTAS SQL:
+-- CL√ÅUSULA ORDER BY
 
 /* Sintaxe
 SELECT coluna
@@ -155,9 +155,9 @@ FROM Livro
 ORDER BY IdEditora ASC, PrecoLivro DESC
 
 
--- RESTRI«√O DE RESULTADOS: SELECT TOP
+-- RESTRI√á√ÉO DE RESULTADOS: SELECT TOP
 /* Sintaxe
-SELECT TOP (n˙mero|PERCENT) colunas
+SELECT TOP (n√∫mero|PERCENT) colunas
 FROM tabela
 ORDER BY
 */
@@ -184,7 +184,7 @@ SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
 FROM Livro
 ORDER BY IdAssunto DESC;
 
--- CL¡USULA WHERE: SUBCONSULTAS
+-- CL√ÅUSULA WHERE: SUBCONSULTAS
 SELECT NomeLivro, DataPub
 FROM Livro
 WHERE IdEditora = (
@@ -239,7 +239,7 @@ UNION
 SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
 
 
--- FUN«’ES DE AGREGA«√O
+-- FUN√á√ïES DE AGREGA√á√ÉO
 /*
 MIN, MAX, AVG, SUM, COUNT
 */
@@ -250,27 +250,27 @@ FROM Autor;
 SELECT MAX(PrecoLivro) 'Mais Caro'
 FROM Livro;
 
-SELECT MIN(NumeroPaginas) 'Menor n∫ P·ginas'
+SELECT MIN(NumeroPaginas) 'Menor n¬∫ P√°ginas'
 FROM Livro;
 
-SELECT AVG(PrecoLivro) 'PreÁo MÈdio'
+SELECT AVG(PrecoLivro) 'Pre√ßo M√©dio'
 FROM Livro;
 
 SELECT SUM(PrecoLivro) 'Valor Total'
 FROM Livro;
 
-SELECT AVG(PrecoLivro) 'PreÁo MÈdio'
+SELECT AVG(PrecoLivro) 'Pre√ßo M√©dio'
 FROM Livro;
 
 SELECT COUNT(*) 'Total Linhas do assunto = 1'
 FROM Livro
 WHERE IdAssunto = 1;
 
-SELECT AVG(PrecoLivro) 'PreÁo MÈdio'
+SELECT AVG(PrecoLivro) 'Pre√ßo M√©dio'
 FROM Livro;
 
--- MESMO RESULTADO DE USAR A FUN«√O AVG
-SELECT SUM(PrecoLivro) / COUNT(*) AS 'PreÁo MÈdio'
+-- MESMO RESULTADO DE USAR A FUN√á√ÉO AVG
+SELECT SUM(PrecoLivro) / COUNT(*) AS 'Pre√ßo M√©dio'
 FROM Livro;
 
 SELECT NomeLivro, PrecoLivro
@@ -280,37 +280,37 @@ WHERE PrecoLivro = (
 		FROM Livro
 	 );
 
--- CL¡USULA LIKE E (NOT LIKE)
+-- CL√ÅUSULA LIKE E (NOT LIKE)
 /*
 SINTAXE:
 SELECT colunas
 FROM tabela
-WHERE coluna LIKE padr„o;
+WHERE coluna LIKE padr√£o;
 
 METACARACTERES:
 % - QUALQUER CADEIA DE 0 OU MAIS CARACTERES
-_ - QUALQUER CARACTERE ⁄NICO
-[] - CARACTERES ⁄NICOS NO INTERVALO OU CONJUNTO ESPECIFICADO
-[^] - CARACTERES ⁄NICOS N√O NO INTERVALO OU CONJUNTO ESPECIFICADO
+_ - QUALQUER CARACTERE √öNICO
+[] - CARACTERES √öNICOS NO INTERVALO OU CONJUNTO ESPECIFICADO
+[^] - CARACTERES √öNICOS N√ÉO NO INTERVALO OU CONJUNTO ESPECIFICADO
 */
 
---SELECIONA LIVROS CUJO NOME COME«A COM A LETRA F
+--SELECIONA LIVROS CUJO NOME COME√áA COM A LETRA F
 SELECT * FROM Livro
 WHERE NomeLivro LIKE 'F%';
 
---SELECIONA SOBRENOMES DE AUTORES CUJO NOME COME«A COM A LETRA S
+--SELECIONA SOBRENOMES DE AUTORES CUJO NOME COME√áA COM A LETRA S
 SELECT SobrenomeAutor FROM Autor
 WHERE NomeAutor LIKE 'S%';
 
---SELECIONA LIVROS CUJO NOME COME«A COM AS LETRAS F OU D
+--SELECIONA LIVROS CUJO NOME COME√áA COM AS LETRAS F OU D
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '[FD]%';
 
---SELECIONA LIVROS CUJO NOME NAO COME«A COM AS LETRAS F OU D
+--SELECIONA LIVROS CUJO NOME NAO COME√áA COM AS LETRAS F OU D
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '[^F^D]%';
 
---SELECIONA LIVROS CUJO NOME COME«A COM UMA VOGAL
+--SELECIONA LIVROS CUJO NOME COME√áA COM UMA VOGAL
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '[AEIOU]%';
 
@@ -318,15 +318,15 @@ WHERE NomeLivro LIKE '[AEIOU]%';
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '%[AEIOU]';
 
---SELECIONA LIVROS CUJO NOME COME«A COM UM NUMERO DE 0 A 9
+--SELECIONA LIVROS CUJO NOME COME√áA COM UM NUMERO DE 0 A 9
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '[0-9]%';
 
---SELECIONA LIVROS QUE COME«AM COM A E TERMINAM COM O
+--SELECIONA LIVROS QUE COME√áAM COM A E TERMINAM COM O
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE 'A % O';
 
---SELECIONA AUTORES ONDE O NOME COME«A COM R E O SOBRENOME COM B
+--SELECIONA AUTORES ONDE O NOME COME√áA COM R E O SOBRENOME COM B
 SELECT NomeAutor, SobrenomeAutor
 FROM Autor
 WHERE NomeAutor LIKE 'R%' AND SobrenomeAutor LIKE 'B%';
@@ -335,21 +335,21 @@ WHERE NomeAutor LIKE 'R%' AND SobrenomeAutor LIKE 'B%';
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro LIKE '%[AEIOU]_';
 
---SELECIONA EDITORAS CUJO NOME COME«A COM LETRAS ENTRE O E T
+--SELECIONA EDITORAS CUJO NOME COME√áA COM LETRAS ENTRE O E T
 SELECT NomeEditora FROM Editora
 WHERE NomeEditora LIKE '[O-T]%';
 
---SELECIONA AUTORES CUJO NOME COME«A COM J E TEM EXATAMENTE QUATRO LETRAS
+--SELECIONA AUTORES CUJO NOME COME√áA COM J E TEM EXATAMENTE QUATRO LETRAS
 SELECT NomeAutor, SobrenomeAutor
 FROM Autor
 WHERE NomeAutor LIKE 'J___';
 
---SELECIONA LIVROS CUJO NOME NAO COME«A COM VOGAL NEM COM NUMERO
+--SELECIONA LIVROS CUJO NOME NAO COME√áA COM VOGAL NEM COM NUMERO
 SELECT NomeLivro FROM Livro
 WHERE NomeLivro NOT LIKE '[AEIOU0-9]%';
 
 /*
-BACKUP E RESTAURA«√O DE BANCO DE DADOS
+BACKUP E RESTAURA√á√ÉO DE BANCO DE DADOS
 
 SINTAXE:
 BACKUP DATABASE nome_banco
@@ -453,9 +453,9 @@ CROSS JOIN tabela2
 
 -- VIEWS - TABELAS VIRTUAIS
 -- SIMPLIFICAR CONSULTAS COMPLEXAS
--- SEGURAN«A
--- ABSTRA«√O
--- AGREGA«√O E SUMARIZA«√O DE DADOS
+-- SEGURAN√áA
+-- ABSTRA√á√ÉO
+-- AGREGA√á√ÉO E SUMARIZA√á√ÉO DE DADOS
 
 
 -- SINTAXE:
@@ -463,7 +463,7 @@ CROSS JOIN tabela2
 CREATE [OR ALTER] VIEW nomeView AS
 SELECT colunas
 FROM tabelas
-WHERE condiÁıes
+WHERE condi√ß√µes
 */
 
 
@@ -503,9 +503,9 @@ WHERE coluna operador (
 [ORDER BY coluna]
 */
 
-/* Busca o nome e o preÁo de todos os livros cujo valor 
-   seja maior que a mÈdia de preÁos de todos os livros da tabela.
-   A subconsulta cria uma "tabela tempor·ria" com o valor mÈdio global.
+/* Busca o nome e o pre√ßo de todos os livros cujo valor 
+   seja maior que a m√©dia de pre√ßos de todos os livros da tabela.
+   A subconsulta cria uma "tabela tempor√°ria" com o valor m√©dio global.
 */
 SELECT L.NomeLivro, L.PrecoLivro
 FROM Livro L,
@@ -513,11 +513,11 @@ FROM Livro L,
 WHERE L.PrecoLivro > Subconsulta.MediaPreco;
 
 
-/* Retorna o nome da editora que publicou livros de 'FicÁ„o CientÌfica'.
-   O fluxo de busca È: 
-   1. Descobre o ID do assunto 'FicÁ„o CientÌfica'.
+/* Retorna o nome da editora que publicou livros de 'Fic√ß√£o Cient√≠fica'.
+   O fluxo de busca √©: 
+   1. Descobre o ID do assunto 'Fic√ß√£o Cient√≠fica'.
    2. Localiza o ID da editora vinculada a esse assunto na tabela de Livros.
-   3. Retorna o nome da editora correspondente, em ordem alfabÈtica.
+   3. Retorna o nome da editora correspondente, em ordem alfab√©tica.
 */
 SELECT NomeEditora
 FROM Editora
@@ -527,7 +527,7 @@ WHERE idEditora = (
 	WHERE IdAssunto = (
 		SELECT IdAssunto
 		FROM Assunto
-		WHERE NomeAssunto = 'FicÁ„o CientÌfica'
+		WHERE NomeAssunto = 'Fic√ß√£o Cient√≠fica'
 		)
 )
 ORDER BY NomeEditora
@@ -540,11 +540,11 @@ SINTAXE:
 
 CREATE PROCEDURE nome_procedimento
 (
-	@Par‚metro Tipo_dados, ...
+	@Par√¢metro Tipo_dados, ...
 )
 AS
 [BEGIN]
-	Bloco de cÛdigos
+	Bloco de c√≥digos
 [END]
 GO
 
@@ -554,7 +554,7 @@ EXEC sp_teste @NomeAutor='Felipe'
 Para visualizar o codigo de uma procedure
 EXEC sp_helptext sp_nome_procedimento
 
-Renomear procedure (PorÈm n„o È recomendado, pois outros procedimentos podem usar a antiga procedure com o nome antigo
+Renomear procedure (Por√©m n√£o √© recomendado, pois outros procedimentos podem usar a antiga procedure com o nome antigo
 o ideial e excluir e criar novamente)
 
 sp_rename 'nome_atual', 'novo_nome'
@@ -565,11 +565,11 @@ sp_rename 'nome_atual', 'novo_nome'
 CREATE PROCEDURE nome_procedimento
 WITH ENCRYPTION
 (
-	@Par‚metro Tipo_dados, ...
+	@Par√¢metro Tipo_dados, ...
 )
 AS
 [BEGIN]
-	Bloco de cÛdigos
+	Bloco de c√≥digos
 [END]
 GO
 
@@ -585,7 +585,7 @@ ON tabela | view
 	AFTER | INSTEAD OF [INSERT, UPDATE, DELETE]
 AS
 BEGIN
-	CÛdigo do Trigger
+	C√≥digo do Trigger
 END;
 GO
 */
@@ -601,31 +601,31 @@ WHERE is_disabled = 0 OR is_disabled = 1;
 
 
 /*
-UDF - FUN«’ES DEFINIDAS PELO USU¡RIO
+UDF - FUN√á√ïES DEFINIDAS PELO USU√ÅRIO
 
-Podemos criar funÁıes (User-Defined Functions / UDFs) para
+Podemos criar fun√ß√µes (User-Defined Functions / UDFs) para
 realizar diversas tarefas nos bancos de dados, tais como:
-- Inserir lÛgica complexa em uma consulta
-- Criar novas funÁıes para expressıes complexas
-- Substituir views com a vantagem de aceitar par‚metros
+- Inserir l√≥gica complexa em uma consulta
+- Criar novas fun√ß√µes para express√µes complexas
+- Substituir views com a vantagem de aceitar par√¢metros
 
-As funÁıes UDF podem ser Escalares ou Tabulares (com valor de tabela):
-- FunÁ„o UDF Escalar: Retorna um valor ˙nico
-- FunÁ„o UDF Tabular: Retorna uma tabela de valores
+As fun√ß√µes UDF podem ser Escalares ou Tabulares (com valor de tabela):
+- Fun√ß√£o UDF Escalar: Retorna um valor √∫nico
+- Fun√ß√£o UDF Tabular: Retorna uma tabela de valores
 
 
 
--- FunÁıes Escalares
-CREATE FUNCTION nome_funcao(par‚metros)
+-- Fun√ß√µes Escalares
+CREATE FUNCTION nome_funcao(par√¢metros)
 RETURNS tipo_dado_retorno
 AS
 BEGIN
-	bloco de cÛdigo
+	bloco de c√≥digo
 	RETURN valor_retorno
 END;
 */
 
---FunÁ„o com valor de tabela
+--Fun√ß√£o com valor de tabela
 CREATE FUNCTION retorna_itens(@valor REAL)
 RETURNS TABLE
 AS 
@@ -642,7 +642,7 @@ RETURN (
 SELECT NomeLivro, NomeAssunto
 FROM dbo.retorna_itens(62.00)
 
--- FunÁıes de Data e Hora
+-- Fun√ß√µes de Data e Hora
 
 SELECT GETDATE() AS 'Data e hora atuais';
 SELECT GETUTCDATE() AS 'Data e hora atuais';
@@ -661,32 +661,62 @@ SELECT DATEDIFF(hh, getutcdate(), getdate()) AS 'UTC Campo Grande - MS';
 
 SELECT DATEDIFF(dd, '1980-12-15', gatdate());
 
-SELECT DATEPART(yyyy, DataPub) AS 'Ano de LanÁamento'
+SELECT DATEPART(yyyy, DataPub) AS 'Ano de Lan√ßamento'
 DATEPART(dd, DatePub) AS 'Dia'
-DATENAME(mm, DatePub) AS 'MÍs'
+DATENAME(mm, DatePub) AS 'M√™s'
 FROM Livro
 WHERE idLivro = 105;
 */
 
--- DATEADD(parte, n˙mero, data)
+-- DATEADD(parte, n√∫mero, data)
 /*
 Sintaxe:
-SELECT DataPub 'PublicaÁ„o EUA', DATEADD(dd,50,DatePub) AS 'LanÁamento Brasil'
+SELECT DataPub 'Publica√ß√£o EUA', DATEADD(dd,50,DatePub) AS 'Lan√ßamento Brasil'
 FROM Livro
 WHERE idLivro = 105;
 */
 
 SELECT DATEADD(dd,20,GETDATE());
 
--- CONVERT(tipo_dados, express„o, estilo)
+-- CONVERT(tipo_dados, express√£o, estilo)
 SELECT CONVERT(VARCHAR(10), GETDATE(), 103) Hoje;
 
 SELECT CONVERT(VARCHAR(10), GETDATE(), 108) Hoje;
 
-SELECT NomeLivro TÌtulo, CONVERT(VARCHAR(10), DataPub, 103) PublicaÁ„o
+SELECT NomeLivro T√≠tulo, CONVERT(VARCHAR(10), DataPub, 103) Publica√ß√£o
 FROM Livro
 WHERE DataPub >= CONVERT(VARCHAR(10), '10/10/2015', 103);
 
 
+/*
+Funcoes de Manipula√ß√£o de Strings
+- CONCAT - LEN - LOWER - UPPER - LTRIM - RTRIM - TRIM - LEFT - RIGHT - REPLACE - SUBSTRING
 
+CONCAT: Junta dois ou mais textos em um s√≥.
+	Ex: CONCAT('Ol√°', 'Mundo') ‚Üí 'Ol√° Mundo'
+
+LEN (ou LENGTH): Conta quantos caracteres o texto tem (o comprimento).
+
+LOWER: Transforma tudo em min√∫sculo.
+
+UPPER: Transforma tudo em MAI√öSCULO.
+
+LTRIM: Remove os espa√ßos em branco in√∫teis do lado esquerdo (Left).
+
+RTRIM: Remove os espa√ßos em branco do lado direito (Right).
+
+TRIM: Remove os espa√ßos de ambos os lados. √â a faxina completa.
+
+LEFT: Pega uma quantidade "X" de caracteres come√ßando da esquerda.
+	Ex: LEFT('Banana', 2) ‚Üí 'Ba'
+
+RIGHT: Pega uma quantidade "X" de caracteres come√ßando da direita.
+	Ex: RIGHT('Banana', 2) ‚Üí 'na'
+
+REPLACE: Procura um trecho espec√≠fico e o substitui por outro.
+	Ex: REPLACE('Gato', 'G', 'R') ‚Üí 'Rato'
+
+SUBSTRING: Extrai um peda√ßo do texto de qualquer posi√ß√£o que voc√™ escolher. Voc√™ diz onde come√ßa e quantos caracteres quer.
+
+/*
 
