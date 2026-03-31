@@ -718,5 +718,43 @@ REPLACE: Procura um trecho específico e o substitui por outro.
 
 SUBSTRING: Extrai um pedaço do texto de qualquer posição que você escolher. Você diz onde começa e quantos caracteres quer.
 
-/*
+*/
 
+-- Índices
+
+/* Estruturas utilizadas para otimizar a recuperação de
+dados de tabelas.
+Permitem que os registros relevantes sejam encontrados mais 
+rapidamente com base em determinados critérios de pesquia.
+
+Clusterizados B-tree
+não-Clusterizados
+*/
+
+CREATE INDEX nome_indice
+ON nome_tabela(coluna1, coluna2, ....)
+
+
+-- Visualizar indices 
+exec sp_helpindex nome_tabela;
+
+-- Desabilitar 1 indice de uma tabela
+ALTER INDEX nome_indice
+ON nome_tabela
+DISABLE;
+
+-- Desabilitar todos os indices de uma tabela
+ALTER INDEX ALL ON nome_tabela
+DISABLE;
+
+-- Reabilitar 1 indice de uma tabela
+ALTER INDEX nome_indice
+ON nome_tabela
+REBUILD;
+
+-- Reabilitar todos os indices de uma tabela
+ALTER INDEX ALL ON nome_tabela
+REBUILD;
+
+-- Deletar um indice
+DROP INDEX nome_tabela.nome_indice;
